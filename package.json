@@ -47,5 +47,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "^7.12.4"
   }
 }
