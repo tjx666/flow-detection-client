@@ -1,17 +1,8 @@
-import React, { Component } from 'react'
-import { Button } from 'antd'
-import Home from './pages/Home/Home'
+import * as React from 'react';
+import { Home } from './pages';
 
-import './App.scss'
-
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <Home />
-            </div>
-        )
-    }
-}
-
-export default App
+export const App = () => (
+  <div className="App">
+    <Home />
+  </div>
+);
