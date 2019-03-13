@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Layout, Menu, Avatar } from 'antd';
 const { Header, Content, Footer } = Layout;
-import { RankingList } from '../../containers/MostCrowdedStreetBoard/RankingList';
+import { RankingList, Monitor, Map } from '../../containers/';
 
 import { Home as strings } from '../../constants/strings';
 import './Home.scss';
@@ -28,6 +28,8 @@ export const Home = () => {
 
       <Content className="home-content">
         <RankingList />
+        <Map />
+        <Monitor />
       </Content>
 
       <Footer style={{ textAlign: 'center' }}>{strings.copyright}</Footer>

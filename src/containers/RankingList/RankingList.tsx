@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, List } from 'antd';
+import { Card, List, Icon } from 'antd';
 import { Street, createDefaultRankingListStreets } from '../../models/Street';
 import { getRankingListData } from '../../api/RankingListApi';
 
@@ -21,6 +21,8 @@ const useRankingListStreets = (): [Street[], () => Promise<void>] => {
   return [rankingListStreets, loadRankingListData];
 };
 
+const Title = <span className="ranking-list-title">{strings.title}</span>;
+
 export const RankingList = () => {
   const [rankingListStreets, loadRankingListData] = useRankingListStreets();
 
@@ -29,10 +31,15 @@ export const RankingList = () => {
   }, []);
 
   return (
-    <Card className="MostCrowdedBoard" title={strings.title} bordered={false}>
+    <Card
+      className="MostCrowdedBoard"
+      title={Title}
+      bordered={false}
+      headStyle={{ textAlign: 'center' }}
+      bodyStyle={{ paddingTop: 20 }}
+    >
       <List
-        footer={<div>Footer</div>}
-        bordered
+        bordered={false}
         dataSource={rankingListStreets}
         renderItem={(item: Street) => <RankListItem street={item} />}
       />
@@ -49,9 +56,13 @@ const RankListItem = (props: PropsRankListItem) => {
 
   return (
     <List.Item>
-      <span className="street-name">{`${name}`}</span>
-      &nbsp;
-      <span>{`${carFlow}/${humanFlow}`}</span>
+      <div className="ranklist-item">
+        <div className="ranklist-item-left">
+          <Icon type="flag" className="flag-icon" />
+          <span className="rank">{`${name}`}</span>
+        </div>
+        <span className="rate">{`${carFlow} / ${humanFlow}`}</span>
+      </div>
     </List.Item>
   );
 };

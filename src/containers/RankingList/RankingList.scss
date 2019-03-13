@@ -1,0 +1,33 @@
+.MostCrowdedBoard {
+  max-width: 250px;
+
+  .ranking-list-title {
+    font-size: 13px;
+    color: black;
+    font-weight: bold;
+  }
+
+  .ranklist-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .ranklist-item-left {
+      .flag-icon {
+        margin-left: 5px;
+        font-size: 20px;
+        color: red;
+      }
+
+      .rank {
+        margin-left: 10px;
+        font-weight: bold;
+        color: black;
+      }
+    }
+
+    .rate {
+      margin-right: 15px;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { Street } from '../models/Street';
+// import Faker from 'faker';
 
 export const getRankingListData = async (): Promise<Street[]> => {
   return [
@@ -29,11 +30,6 @@ export const getRankingListData = async (): Promise<Street[]> => {
     },
     {
       name: '6',
-      carFlow: 10,
-      humanFlow: 20
-    },
-    {
-      name: '1',
       carFlow: 10,
       humanFlow: 20
     },
