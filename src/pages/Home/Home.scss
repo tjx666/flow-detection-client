@@ -1,34 +1,8 @@
 .home {
-  width: 100vw;
-  height: 100vh;
-
-  .header {
-    position: relative;
+    width: 100vw;
+    padding: 20px 50px;
     display: flex;
-    align-items: center;
-
-    // .logo {}
-
-    .title {
-      color: white;
-      margin-left: 20px;
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      font-family: '方正中宋';
-    }
-
-    .menu {
-      position: absolute;
-      right: 150px;
-      line-height: 64px;
-    }
-  }
-
-  .home-content {
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    padding: 10px 100px;
-    background-color: rgba(200, 200, 200, 0.5);
-  }
+    align-items: center;
 }
