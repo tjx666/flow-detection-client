@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Map } from '../../containers'
+import { Map } from '../../components'
 import { RankingList, Monitor } from '../../components'
 import { Street } from '../../models/Street'
 import { getRankingListData } from '../../api/streetApi'
