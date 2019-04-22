@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card, Button } from 'antd'
 import './Monitor.scss'
 
-const Title = <span className="title">{`监控`}</span>
+const Title = () => <span className="title">{`监控`}</span>
 
 const bodyStyle: React.CSSProperties = {
     display: 'flex',
@@ -20,7 +20,7 @@ export const Monitor = (props: Props) => {
 
     return (
         <Card
-            title={Title}
+            title={<Title />}
             headStyle={{ textAlign: 'center' }}
             className="monitor"
             bodyStyle={bodyStyle}

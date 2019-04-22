@@ -1,26 +1,10 @@
 .app {
-    .header {
-        height: 68px;
-        width: 100vw;
-        padding: 0 40px;
-        box-sizing: border-box;
-        position: relative;
-        display: flex;
-        align-items: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 
-        .title {
-            position: relative;
-            left: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            font-family: '黑体';
-            color: white;
-        }
-
-        .menu {
-            position: absolute;
-            right: 60px;
-        }
+    .content {
+        flex: 1;
     }
 
     .footer {
