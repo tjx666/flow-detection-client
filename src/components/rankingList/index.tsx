@@ -1,6 +1,6 @@
 import * as React from 'react'
-import classnames from 'classnames'
-import { Card, List, Icon, Select } from 'antd'
+import { Card, List, Select } from 'antd'
+import { RankListItem } from '../rankingListItem'
 import { Street } from '../../models/Street'
 import './style.scss'
 
@@ -46,28 +46,6 @@ const RankListConfiguration = () => {
     )
 }
 
-interface RankListItemProps {
-    rank: number
-    street: Street
-    isSelected?: boolean
-}
-
-const RankListItem = ({ street, isSelected }: RankListItemProps) => {
-    const { name, carFlow, humanFlow } = street
-
-    return (
-        <List.Item
-            className={classnames('ranklist-item', {
-                'selected-item': isSelected,
-            })}
-        >
-            <Icon type="flag" className="flag-icon" />
-            <span className="rank">{`${name}`}</span>
-            <span className="rate">{`${carFlow} / ${humanFlow}`}</span>
-        </List.Item>
-    )
-}
-
 interface RankingListProps {
     streets: Street[]
 }
@@ -79,10 +57,12 @@ const cardBodyStyle: React.CSSProperties = {
 
 export const RankingList = ({ streets }: RankingListProps) => {
     const RANKING_LIST_LENGTH = 10
+
     interface ItemType {
         rank: number
         street: Street
     }
+
     const dataSource = streets
         .sort((street1, street2) => street1.carFlow - street2.carFlow)
         .slice(0, RANKING_LIST_LENGTH)
