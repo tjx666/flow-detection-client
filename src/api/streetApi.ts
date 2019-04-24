@@ -22,11 +22,11 @@ const streetNames = [
 
 export const getRankingListData = async (): Promise<Street[]> => {
     return streetNames.map(name => {
-        const carFlow = _.random(2, 10)
+        const carFlow = _.random(2, 20)
         return {
             name,
             carFlow,
-            humanFlow: carFlow * (Math.random() < 0.5 ? 5 : 4),
+            humanFlow: carFlow * (Math.random() < 0.5 ? 5 : 2),
         }
     })
 }

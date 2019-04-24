@@ -3,26 +3,42 @@ import { Select } from 'antd'
 import './style.scss'
 const Option = Select.Option
 
-export const RankListSetting = () => {
+interface RankingListSettingProps {
+    onChangeSetting: (settingItem: string, newValue: string) => void
+}
+
+export const RankingListSetting = ({
+    onChangeSetting,
+}: RankingListSettingProps) => {
+    const handleChangeSetting = (settingItem: string) => {
+        return (value: string) => {
+            onChangeSetting(settingItem, value)
+        }
+    }
+
     return (
-        <div className="configuration">
-            <div className="configuration-item">
-                <label htmlFor="select-sort-way">排序方式:</label> &nbsp;
+        <div className="ranking-list-setting">
+            <div className="setting-item">
+                <label htmlFor="select-sort-way">排序方式:</label>
+                &nbsp;
                 <Select
                     id="select-sort-way"
-                    defaultValue="1"
+                    defaultValue="car-flow"
                     style={{ width: 120 }}
+                    onChange={handleChangeSetting('sort-way')}
                 >
-                    <Option value="1">车流量</Option>
-                    <Option value="2">人流量</Option>
+                    <Option value="car-flow">车流量</Option>
+                    <Option value="human-flow">人流量</Option>
                 </Select>
             </div>
-            <div className="configuration-item">
-                <label htmlFor="select-load">选择线路:</label> &nbsp;
+            <div className="setting-item">
+                <label htmlFor="select-load">选择线路:</label>
+                &nbsp;
                 <Select
                     id="select-load"
                     defaultValue="1"
                     style={{ width: 120 }}
+                    onChange={handleChangeSetting('path')}
                 >
                     <Option value="1">一号线路</Option>
                     <Option value="2">二号线路</Option>
