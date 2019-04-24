@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Card, List, Select } from 'antd'
+import { Card, List } from 'antd'
 import { RankListItem } from '../rankingListItem'
+import { RankListSetting } from '../RankingListSetting'
 import { Street } from '../../models/Street'
+import { getRankingListData } from '../../api/streetApi'
 import './style.scss'
-
-const Option = Select.Option
 
 const RankingListTitle = () => {
     return (
@@ -15,58 +15,36 @@ const RankingListTitle = () => {
     )
 }
 
-const RankListConfiguration = () => {
-    return (
-        <div className="configuration">
-            <div className="configuration-item">
-                <label htmlFor="select-sort-way">排序方式:</label> &nbsp;
-                <Select
-                    id="select-sort-way"
-                    defaultValue="1"
-                    style={{ width: 120 }}
-                >
-                    <Option value="1">车流量</Option>
-                    <Option value="2">人流量</Option>
-                </Select>
-            </div>
-            <div className="configuration-item">
-                <label htmlFor="select-load">选择线路:</label> &nbsp;
-                <Select
-                    id="select-load"
-                    defaultValue="1"
-                    style={{ width: 120 }}
-                >
-                    <Option value="1">一号线路</Option>
-                    <Option value="2">二号线路</Option>
-                    <Option value="3">三号线路</Option>
-                    <Option value="4">四号线路</Option>
-                </Select>
-            </div>
-        </div>
-    )
-}
-
-interface RankingListProps {
-    streets: Street[]
-}
-
 const cardBodyStyle: React.CSSProperties = {
     padding: '10px 20px',
     paddingBottom: 18,
 }
 
-export const RankingList = ({ streets }: RankingListProps) => {
+interface ItemType {
+    rank: number
+    street: Street
+}
+
+export const RankingList = () => {
+    const [streetsItems, setStreetsItems] = React.useState<ItemType[]>([])
     const RANKING_LIST_LENGTH = 10
 
-    interface ItemType {
-        rank: number
-        street: Street
-    }
+    React.useEffect(() => {
+        setInterval(async () => {
+            const streets = await getRankingListData()
+            const newStreetItems = streets
+                .sort((street1, street2) => street1.carFlow - street2.carFlow)
+                .slice(0, RANKING_LIST_LENGTH)
+                .map(
+                    (item, index): ItemType => ({
+                        street: item,
+                        rank: index + 1,
+                    })
+                )
 
-    const dataSource = streets
-        .sort((street1, street2) => street1.carFlow - street2.carFlow)
-        .slice(0, RANKING_LIST_LENGTH)
-        .map((item, index): ItemType => ({ street: item, rank: index + 1 }))
+            setStreetsItems(newStreetItems)
+        }, 500)
+    }, [])
 
     return (
         <Card
@@ -79,12 +57,12 @@ export const RankingList = ({ streets }: RankingListProps) => {
             <List
                 className="street-list"
                 bordered={false}
-                dataSource={dataSource}
+                dataSource={streetsItems}
                 renderItem={(item: ItemType) => (
                     <RankListItem rank={item.rank} street={item.street} />
                 )}
             />
-            <RankListConfiguration />
+            <RankListSetting />
         </Card>
     )
 }

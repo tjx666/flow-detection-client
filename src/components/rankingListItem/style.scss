@@ -1,0 +1,34 @@
+@import '../../style/theme.scss';
+
+.ranklist-item {
+    width: 100%;
+    position: relative;
+
+    &-selected {
+        background-color: $selectedColor;
+    }
+
+    &:hover {
+        background-color: $hoverColor;
+    }
+
+    &-icon {
+        font-size: 20px;
+        font-style: italic;
+        color: red;
+    }
+
+    .rank {
+        align-self: flex-end;
+        margin-left: 5px;
+        margin-right: 50px;
+        font-size: 12px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .rate {
+        position: absolute;
+        left: 120px;
+    }
+}

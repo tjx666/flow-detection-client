@@ -22,36 +22,6 @@
 
     .street-list {
         margin-bottom: 10px;
-
-        .ranklist-item {
-            width: 100%;
-            position: relative;
-
-            &:hover {
-                background-color: rgba(29, 165, 122, 0.158);
-            }
-
-            .flag-icon {
-                margin-left: 10px;
-                font-size: 20px;
-                font-style: italic;
-                color: red;
-            }
-
-            .rank {
-                align-self: flex-end;
-                margin-left: 5px;
-                margin-right: 50px;
-                font-size: 12px;
-                font-weight: bold;
-                color: black;
-            }
-
-            .rate {
-                position: absolute;
-                left: 120px;
-            }
-        }
     }
 
     .configuration {

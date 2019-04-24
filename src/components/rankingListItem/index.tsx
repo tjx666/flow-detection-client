@@ -10,16 +10,26 @@ interface RankListItemProps {
     isSelected?: boolean
 }
 
-export const RankListItem = ({ street, isSelected }: RankListItemProps) => {
+export const RankListItem = ({
+    rank,
+    street,
+    isSelected,
+}: RankListItemProps) => {
     const { name, carFlow, humanFlow } = street
 
     return (
         <List.Item
             className={classnames('ranklist-item', {
-                'selected-item': isSelected,
+                'ranklist-item-selected': isSelected,
             })}
         >
-            <Icon type="flag" className="flag-icon" />
+            {(rank <= 3 && (
+                <Icon type="fire" className="ranklist-item-icon" />
+            )) || (
+                <>
+                    <em>{`${rank}.`}</em>&nbsp;
+                </>
+            )}
             <span className="rank">{`${name}`}</span>
             <span className="rate">{`${carFlow} / ${humanFlow}`}</span>
         </List.Item>
