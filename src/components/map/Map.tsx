@@ -7,9 +7,9 @@ interface BoundingRec {
     top: number
 }
 
-interface Props {}
+interface MapProps {}
 
-export const Map = (props: Props) => {
+export const Map = (props: MapProps) => {
     const pointCoordinates = [
         [300, 380],
         [80, 100],

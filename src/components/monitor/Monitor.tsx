@@ -5,19 +5,31 @@ import './Monitor.scss'
 
 const Title = () => <span className="title">{`监控`}</span>
 
+interface DataPanelProps {
+    carFlow: number
+    humanFlow: number
+}
+
+const DataPanel = ({ carFlow, humanFlow }: DataPanelProps) => {
+    return (
+        <div className="data-panel">
+            <span>{`车流量: ${carFlow}`}</span>
+            <span>{`人流量: ${humanFlow}`}</span>
+        </div>
+    )
+}
+
 const bodyStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
 }
 
-interface Props {
+interface MonitorProps {
     videoLink: string
 }
 
-export const Monitor = (props: Props) => {
-    const { videoLink } = props
-
+export const Monitor = ({ videoLink }: MonitorProps) => {
     return (
         <Card
             title={<Title />}
@@ -40,21 +52,5 @@ export const Monitor = (props: Props) => {
                 <Link to="/detail">查看详情 ></Link>
             </Button>
         </Card>
-    )
-}
-
-interface PropsDataPanel {
-    carFlow: number
-    humanFlow: number
-}
-
-const DataPanel = (props: PropsDataPanel) => {
-    const { carFlow, humanFlow } = props
-
-    return (
-        <div className="data-panel">
-            <span>{`车流量: ${carFlow}`}</span>
-            <span>{`人流量: ${humanFlow}`}</span>
-        </div>
     )
 }

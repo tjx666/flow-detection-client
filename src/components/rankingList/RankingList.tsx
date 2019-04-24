@@ -1,20 +1,18 @@
 import * as React from 'react'
+import classnames from 'classnames'
 import { Card, List, Icon, Select } from 'antd'
 import { Street } from '../../models/Street'
 import './RankingList.scss'
 
 const Option = Select.Option
 
-const Title = () => (
-    <p className="ranking-list-title-container">
-        <span className="title">拥挤街道 Top 10</span>
-        <span className="sub-title">车流量 / 人流量</span>
-    </p>
-)
-
-const cardBodyStyle: React.CSSProperties = {
-    padding: '10px 20px',
-    paddingBottom: 18,
+const Title = () => {
+    return (
+        <p className="ranking-list-title-container">
+            <span className="title">拥挤街道 Top 10</span>
+            <span className="sub-title">车流量 / 人流量</span>
+        </p>
+    )
 }
 
 const Configuration = () => {
@@ -27,8 +25,8 @@ const Configuration = () => {
                     defaultValue="1"
                     style={{ width: 120 }}
                 >
-                    <Option value="1">按车流量排序</Option>
-                    <Option value="2">按人流量排序</Option>
+                    <Option value="1">车流量</Option>
+                    <Option value="2">人流量</Option>
                 </Select>
             </div>
             <div className="configuration-item">
@@ -50,10 +48,11 @@ const Configuration = () => {
 
 interface PropsRankListItem {
     street: Street
+    isSelected?: boolean
 }
 
-const RankListItem = (props: PropsRankListItem) => {
-    const { name, carFlow, humanFlow } = props.street
+const RankListItem = ({ street }: PropsRankListItem) => {
+    const { name, carFlow, humanFlow } = street
 
     return (
         <List.Item className="ranklist-item">
@@ -64,13 +63,16 @@ const RankListItem = (props: PropsRankListItem) => {
     )
 }
 
-interface Props {
+interface RankingListProps {
     listData: Street[]
 }
 
-export const RankingList = (props: Props) => {
-    const { listData } = props
+const cardBodyStyle: React.CSSProperties = {
+    padding: '10px 20px',
+    paddingBottom: 18,
+}
 
+export const RankingList = ({ listData }: RankingListProps) => {
     return (
         <Card
             className="ranking-list"
