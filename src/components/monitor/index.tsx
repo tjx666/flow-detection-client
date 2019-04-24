@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Button } from 'antd'
-import './Monitor.scss'
+import './style.scss'
 
 const Title = () => <span className="title">{`监控`}</span>
 

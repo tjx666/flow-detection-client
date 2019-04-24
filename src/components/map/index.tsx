@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { CameraPoint } from '../../models/CameraPoint'
-import './Map.scss'
+import './style.scss'
 
 interface BoundingRec {
     left: number

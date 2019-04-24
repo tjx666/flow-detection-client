@@ -2,11 +2,11 @@ import * as React from 'react'
 import classnames from 'classnames'
 import { Card, List, Icon, Select } from 'antd'
 import { Street } from '../../models/Street'
-import './RankingList.scss'
+import './style.scss'
 
 const Option = Select.Option
 
-const Title = () => {
+const RankingListTitle = () => {
     return (
         <p className="ranking-list-title-container">
             <span className="title">拥挤街道 Top 10</span>
@@ -15,7 +15,7 @@ const Title = () => {
     )
 }
 
-const Configuration = () => {
+const RankListConfiguration = () => {
     return (
         <div className="configuration">
             <div className="configuration-item">
@@ -46,16 +46,21 @@ const Configuration = () => {
     )
 }
 
-interface PropsRankListItem {
+interface RankListItemProps {
+    rank: number
     street: Street
     isSelected?: boolean
 }
 
-const RankListItem = ({ street }: PropsRankListItem) => {
+const RankListItem = ({ street, isSelected }: RankListItemProps) => {
     const { name, carFlow, humanFlow } = street
 
     return (
-        <List.Item className="ranklist-item">
+        <List.Item
+            className={classnames('ranklist-item', {
+                'selected-item': isSelected,
+            })}
+        >
             <Icon type="flag" className="flag-icon" />
             <span className="rank">{`${name}`}</span>
             <span className="rate">{`${carFlow} / ${humanFlow}`}</span>
@@ -64,7 +69,7 @@ const RankListItem = ({ street }: PropsRankListItem) => {
 }
 
 interface RankingListProps {
-    listData: Street[]
+    streets: Street[]
 }
 
 const cardBodyStyle: React.CSSProperties = {
@@ -72,11 +77,21 @@ const cardBodyStyle: React.CSSProperties = {
     paddingBottom: 18,
 }
 
-export const RankingList = ({ listData }: RankingListProps) => {
+export const RankingList = ({ streets }: RankingListProps) => {
+    const RANKING_LIST_LENGTH = 10
+    interface ItemType {
+        rank: number
+        street: Street
+    }
+    const dataSource = streets
+        .sort((street1, street2) => street1.carFlow - street2.carFlow)
+        .slice(0, RANKING_LIST_LENGTH)
+        .map((item, index): ItemType => ({ street: item, rank: index + 1 }))
+
     return (
         <Card
             className="ranking-list"
-            title={<Title />}
+            title={<RankingListTitle />}
             bordered={false}
             headStyle={{ textAlign: 'center', height: 80 }}
             bodyStyle={cardBodyStyle}
@@ -84,10 +99,12 @@ export const RankingList = ({ listData }: RankingListProps) => {
             <List
                 className="street-list"
                 bordered={false}
-                dataSource={listData}
-                renderItem={(item: Street) => <RankListItem street={item} />}
+                dataSource={dataSource}
+                renderItem={(item: ItemType) => (
+                    <RankListItem rank={item.rank} street={item.street} />
+                )}
             />
-            <Configuration />
+            <RankListConfiguration />
         </Card>
     )
 }
