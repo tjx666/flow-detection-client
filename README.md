@@ -1,5 +1,3 @@
-# 人流检测项目前端部分
-
 # 技术栈
 
 1. react hooks + typescript
