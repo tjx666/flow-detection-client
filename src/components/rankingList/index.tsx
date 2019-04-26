@@ -9,8 +9,9 @@ import './style.scss'
 const RankingListTitle = () => {
     return (
         <p className="ranking-list-title-container">
-            <span className="title">拥挤街道 Top 10</span>
-            <span className="sub-title">车流量 / 人流量</span>
+            <span className="title">Top 10</span>
+            &nbsp;
+            <em className="sub-title">车流量 / 人流量</em>
         </p>
     )
 }
@@ -75,7 +76,7 @@ export const RankingList = () => {
             className="ranking-list"
             title={<RankingListTitle />}
             bordered={false}
-            headStyle={{ textAlign: 'center', height: 80 }}
+            headStyle={{ textAlign: 'center', height: 60 }}
             bodyStyle={cardBodyStyle}
         >
             <List

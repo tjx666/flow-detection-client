@@ -3,8 +3,7 @@
     min-width: 220px;
 
     &-title-container {
-        display: flex;
-        flex-direction: column;
+        height: 40px;
 
         .title {
             font-size: 18px;
@@ -14,7 +13,7 @@
 
         .sub-title {
             margin-top: 5px;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: bold;
             color: gray;
         }
