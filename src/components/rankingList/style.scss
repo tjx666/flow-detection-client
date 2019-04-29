@@ -1,21 +1,23 @@
 .ranking-list {
-    margin-top: 30px;
     min-width: 220px;
+    margin-top: 30px;
 
     &-title-container {
         height: 40px;
 
         .title {
-            font-size: 18px;
-            font-weight: bold;
             color: black;
+            font-weight: bold;
+            font-size: 18px;
         }
 
         .sub-title {
             margin-top: 5px;
-            font-size: 10px;
-            font-weight: bold;
+            margin-left: 10px;
             color: gray;
+            font-weight: bold;
+            font-size: 10px;
+            font-style: italic;
         }
     }
 

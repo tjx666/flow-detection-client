@@ -1,10 +1,10 @@
-import * as React from 'react'
-import { Select } from 'antd'
-import './style.scss'
-const Option = Select.Option
+import * as React from 'react';
+import { Select } from 'antd';
+import './style.scss';
+const Option = Select.Option;
 
 interface RankingListSettingProps {
-    onChangeSetting: (settingItem: string, newValue: string) => void
+    onChangeSetting: (settingItem: string, newValue: string) => void;
 }
 
 export const RankingListSetting = ({
@@ -12,9 +12,9 @@ export const RankingListSetting = ({
 }: RankingListSettingProps) => {
     const handleChangeSetting = (settingItem: string) => {
         return (value: string) => {
-            onChangeSetting(settingItem, value)
-        }
-    }
+            onChangeSetting(settingItem, value);
+        };
+    };
 
     return (
         <div className="ranking-list-setting">
@@ -31,21 +31,6 @@ export const RankingListSetting = ({
                     <Option value="human-flow">人流量</Option>
                 </Select>
             </div>
-            <div className="setting-item">
-                <label htmlFor="select-load">选择线路:</label>
-                &nbsp;
-                <Select
-                    id="select-load"
-                    defaultValue="1"
-                    style={{ width: 120 }}
-                    onChange={handleChangeSetting('path')}
-                >
-                    <Option value="1">一号线路</Option>
-                    <Option value="2">二号线路</Option>
-                    <Option value="3">三号线路</Option>
-                    <Option value="4">四号线路</Option>
-                </Select>
-            </div>
         </div>
-    )
-}
+    );
+};

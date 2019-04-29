@@ -1,13 +1,13 @@
-import * as React from 'react'
-import classnames from 'classnames'
-import { List, Icon } from 'antd'
-import { Street } from '../../models/Street'
-import './style.scss'
+import * as React from 'react';
+import classNames from 'classnames';
+import { List, Icon } from 'antd';
+import { Street } from '../../models/Street';
+import './style.scss';
 
 interface RankListItemProps {
-    rank: number
-    street: Street
-    isSelected?: boolean
+    rank: number;
+    street: Street;
+    isSelected?: boolean;
 }
 
 export const RankListItem = ({
@@ -15,23 +15,21 @@ export const RankListItem = ({
     street,
     isSelected,
 }: RankListItemProps) => {
-    const { name, carFlow, humanFlow } = street
+    const { name, carFlow, humanFlow } = street;
 
     return (
         <List.Item
-            className={classnames('ranklist-item', {
+            className={classNames('ranklist-item', {
                 'ranklist-item-selected': isSelected,
+                'ranklist-item-most-crowded': rank <= 3,
             })}
         >
-            {(rank <= 3 && (
-                <Icon type="fire" className="ranklist-item-icon" />
-            )) || (
-                <>
-                    <em>{`${rank}.`}</em>&nbsp;
-                </>
-            )}
-            <span className="rank">{`${name}`}</span>
-            <span className="rate">{`${carFlow} / ${humanFlow}`}</span>
+            <span className="rank">{`${rank}.`}</span>
+            <span className="street-name">{`${name}`}</span>
+            <span className="rate">
+                <span className="car-flow">{carFlow}</span>&nbsp;/&nbsp;
+                <span className="human-flow">{humanFlow}</span>
+            </span>
         </List.Item>
-    )
-}
+    );
+};

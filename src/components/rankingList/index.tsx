@@ -1,49 +1,48 @@
-import * as React from 'react'
-import { Card, List, message } from 'antd'
-import { RankListItem } from '../rankingListItem'
-import { RankingListSetting } from '../RankingListSetting'
-import { Street } from '../../models/Street'
-import { getRankingListData } from '../../api/streetApi'
-import './style.scss'
+import * as React from 'react';
+import { Card, List, message } from 'antd';
+import { RankListItem } from '../rankingListItem';
+import { RankingListSetting } from '../RankingListSetting';
+import { Street } from '../../models/Street';
+import { getRankingListData } from '../../api/streetApi';
+import './style.scss';
 
 const RankingListTitle = () => {
     return (
         <p className="ranking-list-title-container">
             <span className="title">Top 10</span>
-            &nbsp;
-            <em className="sub-title">车流量 / 人流量</em>
+            <span className="sub-title">车流量 / 人流量</span>
         </p>
-    )
+    );
+};
+
+interface ItemType {
+    rank: number;
+    street: Street;
 }
 
 const cardBodyStyle: React.CSSProperties = {
     padding: '10px 20px',
     paddingBottom: 18,
-}
+};
+let timer: NodeJS.Timeout;
 
-interface ItemType {
-    rank: number
-    street: Street
-}
-
-let timer: NodeJS.Timeout
 export const RankingList = () => {
-    const [streetsItems, setStreetsItems] = React.useState<ItemType[]>([])
-    const [sortWay, setSortWay] = React.useState<string>('car-flow')
-    const RANKING_LIST_LENGTH = 10
+    const [streetsItems, setStreetsItems] = React.useState<ItemType[]>([]);
+    const [sortWay, setSortWay] = React.useState<string>('car-flow');
+    const RANKING_LIST_LENGTH = 10;
 
     React.useEffect(() => {
         if (timer) {
-            clearInterval(timer)
+            clearInterval(timer);
         }
 
         timer = setInterval(async () => {
-            const streets = await getRankingListData()
+            const streets = await getRankingListData();
             const newStreetItems = streets
                 .sort((street1, street2) => {
                     return sortWay === 'car-flow'
                         ? street2.carFlow - street1.carFlow
-                        : street2.humanFlow - street1.humanFlow
+                        : street2.humanFlow - street1.humanFlow;
                 })
                 .slice(0, RANKING_LIST_LENGTH)
                 .map(
@@ -51,25 +50,25 @@ export const RankingList = () => {
                         street: item,
                         rank: index + 1,
                     })
-                )
+                );
 
-            setStreetsItems(newStreetItems)
-        }, 500)
-    }, [sortWay])
+            setStreetsItems(newStreetItems);
+        }, 500);
+    }, [sortWay]);
 
     const handleChangeSetting = (settingItem: string, newValue: string) => {
         if (settingItem === 'sort-way') {
-            setSortWay(newValue)
+            setSortWay(newValue);
 
             if (newValue === 'car-flow') {
-                message.info('排序方式已切换为按车流量排序', 2)
+                message.info('排序方式已切换为按车流量排序', 2);
             } else if (newValue === 'human-flow') {
-                message.info('排序方式已切换为按人流量排序', 2)
+                message.info('排序方式已切换为按人流量排序', 2);
             }
         } else if (settingItem === 'path') {
             //
         }
-    }
+    };
 
     return (
         <Card
@@ -89,5 +88,5 @@ export const RankingList = () => {
             />
             <RankingListSetting onChangeSetting={handleChangeSetting} />
         </Card>
-    )
-}
+    );
+};
