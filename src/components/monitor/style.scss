@@ -1,11 +1,45 @@
+@import '../../style/theme.scss';
+
 .monitor {
     width: 300px;
     margin-top: 30px;
-    padding: 0 20px;
+    margin-bottom: 20px;
 
     .title {
-        font-size: 18px;
         font-weight: bold;
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+
+    .data-panel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 260px;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        border: 2px solid $primary-color;
+
+        &:hover {
+            box-shadow: 1px 1px 5px 5px $light-primary-color;
+        }
+
+        .street-data {
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px;
+        }
+
+        .select-camera-box {
+            display: flex;
+            align-items: center;
+
+            .camera-icon {
+                margin-right: 10px;
+                color: $primary-color;
+                font-size: 24px;
+            }
+        }
     }
 
     .player {
@@ -14,19 +48,9 @@
         object-fit: fill;
     }
 
-    .data-panel {
-        width: 260px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding: 5px;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid black;
-    }
-
     .thermal-map {
         width: 260px;
         height: 180px;
-        margin-bottom: 20px;
+        margin: 10px 0;
     }
 }

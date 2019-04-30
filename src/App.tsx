@@ -1,10 +1,10 @@
-import * as React from 'react'
-import { Layout } from 'antd'
-import { Switch, Route } from 'react-router-dom'
-import { Home, Detail } from './pages'
-import './App.scss'
+import * as React from 'react';
+import { Layout } from 'antd';
+import { Switch, Route } from 'react-router-dom';
+import { Home, Detail } from './pages';
+import './App.scss';
 
-const { Content, Footer } = Layout
+const { Content, Footer } = Layout;
 
 export const App = () => (
     <Layout className="app">
@@ -14,6 +14,8 @@ export const App = () => (
                 <Route exact path="/detail" component={Detail} />
             </Switch>
         </Content>
-        <Footer className="footer">{`Flow detection ©2019 Create by CLFStudio`}</Footer>
+        <Footer className="footer">
+            Flow detection &copy;2019 Create by CLFStudio
+        </Footer>
     </Layout>
-)
+);

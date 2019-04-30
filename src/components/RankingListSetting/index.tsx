@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Select } from 'antd';
+import { Select, Tooltip } from 'antd';
 import './style.scss';
 const Option = Select.Option;
 
@@ -19,7 +19,9 @@ export const RankingListSetting = ({
     return (
         <div className="ranking-list-setting">
             <div className="setting-item">
-                <label htmlFor="select-sort-way">排序方式:</label>
+                <Tooltip title="选择排序方式">
+                    <label htmlFor="select-sort-way">排序方式:</label>
+                </Tooltip>
                 &nbsp;
                 <Select
                     id="select-sort-way"

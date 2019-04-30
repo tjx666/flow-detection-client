@@ -24,7 +24,6 @@ const cardBodyStyle: React.CSSProperties = {
     padding: '10px 20px',
     paddingBottom: 18,
 };
-let timer: NodeJS.Timeout;
 
 let __sortWay__: string;
 export const RankingList = () => {

@@ -5,11 +5,11 @@
     width: 100%;
 
     &-selected {
-        background-color: $selectedColor;
+        background-color: $selected-color;
     }
 
     &:hover {
-        background-color: $hoverColor;
+        background-color: $hover-color;
     }
 
     &-icon {
