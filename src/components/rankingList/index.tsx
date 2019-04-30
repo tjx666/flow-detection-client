@@ -26,21 +26,19 @@ const cardBodyStyle: React.CSSProperties = {
 };
 let timer: NodeJS.Timeout;
 
+let __sortWay__: string;
 export const RankingList = () => {
     const [streetsItems, setStreetsItems] = React.useState<ItemType[]>([]);
     const [sortWay, setSortWay] = React.useState<string>('car-flow');
+    __sortWay__ = sortWay;
     const RANKING_LIST_LENGTH = 10;
 
     React.useEffect(() => {
-        if (timer) {
-            clearInterval(timer);
-        }
-
-        timer = setInterval(async () => {
+        setInterval(async () => {
             const streets = await getRankingListData();
             const newStreetItems = streets
                 .sort((street1, street2) => {
-                    return sortWay === 'car-flow'
+                    return sortWay === __sortWay__
                         ? street2.carFlow - street1.carFlow
                         : street2.humanFlow - street1.humanFlow;
                 })
