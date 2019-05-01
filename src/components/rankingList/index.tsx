@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { RankListItem } from '../rankingListItem';
 import { RankingListSetting } from '../RankingListSetting';
 import { Street } from '../../models/Street';
-import { getRankingListData } from '../../api/streetApi';
+import { getRankingList } from '../../api/streetApi';
 import './style.scss';
 
 interface ItemType {
@@ -17,7 +17,11 @@ const cardBodyStyle: React.CSSProperties = {
     paddingBottom: 18,
 };
 
-export const RankingList = () => {
+interface RankingListProps {
+    onSelectStreet: (street: Street) => void;
+}
+
+export const RankingList = ({ onSelectStreet }: RankingListProps) => {
     const RANKING_LIST_LENGTH = 10;
     const [streetsItems, setStreetsItems] = React.useState<ItemType[]>([]);
     const [sortWay, setSortWay] = React.useState<string>('car-flow');
@@ -29,24 +33,12 @@ export const RankingList = () => {
 
     React.useEffect(() => {
         setInterval(async () => {
-            const streets = await getRankingListData();
+            const streets = await getRankingList();
             const newStreetItems = streets
                 .sort((street1, street2) => {
                     return sortWayRef.current === 'car-flow'
-                        ? _.mean(
-                              street2.cameras.map(camera => camera.carFlow)
-                          ) -
-                              _.mean(
-                                  street1.cameras.map(camera => camera.carFlow)
-                              )
-                        : _.mean(
-                              street2.cameras.map(camera => camera.humanFlow)
-                          ) -
-                              _.mean(
-                                  street1.cameras.map(
-                                      camera => camera.humanFlow
-                                  )
-                              );
+                        ? _.mean(street2.cameras.map(camera => camera.carFlow)) - _.mean(street1.cameras.map(camera => camera.carFlow))
+                        : _.mean(street2.cameras.map(camera => camera.humanFlow)) - _.mean(street1.cameras.map(camera => camera.humanFlow));
                 })
                 .slice(0, RANKING_LIST_LENGTH)
                 .map<ItemType>((item, index) => ({
@@ -58,22 +50,21 @@ export const RankingList = () => {
         }, 1000);
     }, []);
 
-    const handleChangeSetting = React.useCallback(
-        (settingItem: string, newValue: string) => {
-            if (settingItem === 'sort-way') {
-                setSortWay(newValue);
+    const handleChangeSetting = React.useCallback((settingItem: string, newValue: string) => {
+        if (settingItem === 'sort-way') {
+            setSortWay(newValue);
 
-                if (newValue === 'car-flow') {
-                    message.info('排序方式已切换为按车流量排序', 2);
-                } else if (newValue === 'human-flow') {
-                    message.info('排序方式已切换为按人流量排序', 2);
-                }
-            } else if (settingItem === 'path') {
-                //
+            if (newValue === 'car-flow') {
+                message.info('排序方式已切换为按车流量排序', 2);
+            } else if (newValue === 'human-flow') {
+                message.info('排序方式已切换为按人流量排序', 2);
             }
-        },
-        []
-    );
+        }
+    }, []);
+
+    const handleSelect = React.useCallback((street: Street) => {
+        onSelectStreet(street);
+    }, []);
 
     const RankingListTitle = React.useMemo(() => {
         return (
@@ -85,21 +76,8 @@ export const RankingList = () => {
     }, []);
 
     return (
-        <Card
-            className="ranking-list"
-            title={RankingListTitle}
-            bordered={false}
-            headStyle={{ textAlign: 'center', height: 60 }}
-            bodyStyle={cardBodyStyle}
-        >
-            <List
-                className="street-list"
-                bordered={false}
-                dataSource={streetsItems}
-                renderItem={(item: ItemType) => (
-                    <RankListItem rank={item.rank} street={item.street} />
-                )}
-            />
+        <Card className="ranking-list" title={RankingListTitle} bordered={false} headStyle={{ textAlign: 'center', height: 60 }} bodyStyle={cardBodyStyle}>
+            <List className="street-list" bordered={false} dataSource={streetsItems} renderItem={(item: ItemType) => <RankListItem rank={item.rank} street={item.street} onSelect={handleSelect} />} />
             <RankingListSetting onChangeSetting={handleChangeSetting} />
         </Card>
     );
