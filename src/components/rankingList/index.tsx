@@ -6,15 +6,6 @@ import { Street } from '../../models/Street';
 import { getRankingListData } from '../../api/streetApi';
 import './style.scss';
 
-const RankingListTitle = () => {
-    return (
-        <p className="ranking-list-title-container">
-            <span className="title">Top 10</span>
-            <span className="sub-title">车流量 / 人流量</span>
-        </p>
-    );
-};
-
 interface ItemType {
     rank: number;
     street: Street;
@@ -25,19 +16,22 @@ const cardBodyStyle: React.CSSProperties = {
     paddingBottom: 18,
 };
 
-let __sortWay__: string;
 export const RankingList = () => {
+    const RANKING_LIST_LENGTH = 10;
     const [streetsItems, setStreetsItems] = React.useState<ItemType[]>([]);
     const [sortWay, setSortWay] = React.useState<string>('car-flow');
-    __sortWay__ = sortWay;
-    const RANKING_LIST_LENGTH = 10;
+    const sortWayRef = React.useRef<string>(null);
+
+    React.useEffect(() => {
+        sortWayRef.current = sortWay;
+    });
 
     React.useEffect(() => {
         setInterval(async () => {
             const streets = await getRankingListData();
             const newStreetItems = streets
                 .sort((street1, street2) => {
-                    return sortWay === __sortWay__
+                    return sortWay === sortWayRef.current
                         ? street2.carFlow - street1.carFlow
                         : street2.humanFlow - street1.humanFlow;
                 })
@@ -50,27 +44,39 @@ export const RankingList = () => {
                 );
 
             setStreetsItems(newStreetItems);
-        }, 500);
+        }, 1000);
     }, [sortWay]);
 
-    const handleChangeSetting = (settingItem: string, newValue: string) => {
-        if (settingItem === 'sort-way') {
-            setSortWay(newValue);
+    const handleChangeSetting = React.useCallback(
+        (settingItem: string, newValue: string) => {
+            if (settingItem === 'sort-way') {
+                setSortWay(newValue);
 
-            if (newValue === 'car-flow') {
-                message.info('排序方式已切换为按车流量排序', 2);
-            } else if (newValue === 'human-flow') {
-                message.info('排序方式已切换为按人流量排序', 2);
+                if (newValue === 'car-flow') {
+                    message.info('排序方式已切换为按车流量排序', 2);
+                } else if (newValue === 'human-flow') {
+                    message.info('排序方式已切换为按人流量排序', 2);
+                }
+            } else if (settingItem === 'path') {
+                //
             }
-        } else if (settingItem === 'path') {
-            //
-        }
-    };
+        },
+        []
+    );
+
+    const RankingListTitle = React.useMemo(() => {
+        return (
+            <p className="ranking-list-title-container">
+                <span className="title">Top 10</span>
+                <span className="sub-title">车流量 / 人流量</span>
+            </p>
+        );
+    }, []);
 
     return (
         <Card
             className="ranking-list"
-            title={<RankingListTitle />}
+            title={RankingListTitle}
             bordered={false}
             headStyle={{ textAlign: 'center', height: 60 }}
             bodyStyle={cardBodyStyle}

@@ -4,14 +4,12 @@ import { Card, Button, Select, Icon, Tooltip } from 'antd';
 import './style.scss';
 const Option = Select.Option;
 
-const MonitorTitle = () => <span className="title">{`监控`}</span>;
-
 interface DataPanelProps {
     carFlow: number;
     humanFlow: number;
 }
 
-const DataPanel = ({ carFlow, humanFlow }: DataPanelProps) => {
+const DataPanel = React.memo(({ carFlow, humanFlow }: DataPanelProps) => {
     return (
         <div className="data-panel">
             <div className="street-data">
@@ -31,7 +29,7 @@ const DataPanel = ({ carFlow, humanFlow }: DataPanelProps) => {
             </div>
         </div>
     );
-};
+});
 
 interface MonitorProps {
     videoLink: string;
@@ -44,10 +42,14 @@ const bodyStyle: React.CSSProperties = {
 };
 
 export const Monitor = ({ videoLink }: MonitorProps) => {
+    const MonitorTitle = React.useMemo(
+        () => <span className="title">{`监控`}</span>,
+        []
+    );
     return (
         <Card
             className="monitor"
-            title={<MonitorTitle />}
+            title={MonitorTitle}
             headStyle={{ textAlign: 'center' }}
             bodyStyle={bodyStyle}
             bordered

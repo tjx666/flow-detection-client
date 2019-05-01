@@ -10,26 +10,24 @@ interface RankListItemProps {
     isSelected?: boolean;
 }
 
-export const RankListItem = ({
-    rank,
-    street,
-    isSelected,
-}: RankListItemProps) => {
-    const { name, carFlow, humanFlow } = street;
+export const RankListItem = React.memo(
+    ({ rank, street, isSelected }: RankListItemProps) => {
+        const { name, carFlow, humanFlow } = street;
 
-    return (
-        <List.Item
-            className={classNames('ranklist-item', {
-                'ranklist-item-selected': isSelected,
-                'ranklist-item-most-crowded': rank <= 3,
-            })}
-        >
-            <span className="rank">{`${rank}.`}</span>
-            <span className="street-name">{`${name}`}</span>
-            <span className="rate">
-                <span className="car-flow">{carFlow}</span>&nbsp;/&nbsp;
-                <span className="human-flow">{humanFlow}</span>
-            </span>
-        </List.Item>
-    );
-};
+        return (
+            <List.Item
+                className={classNames('ranklist-item', {
+                    'ranklist-item-selected': isSelected,
+                    'ranklist-item-most-crowded': rank <= 3,
+                })}
+            >
+                <span className="rank">{`${rank}.`}</span>
+                <span className="street-name">{`${name}`}</span>
+                <span className="rate">
+                    <span className="car-flow">{carFlow}</span>&nbsp;/&nbsp;
+                    <span className="human-flow">{humanFlow}</span>
+                </span>
+            </List.Item>
+        );
+    }
+);
