@@ -14,10 +14,10 @@ interface RankListItemProps {
 export const RankListItem = React.memo(
     ({ rank, street, isSelected }: RankListItemProps) => {
         const { name, cameras } = street;
-        const averageCarFlow = _.mean(cameras.map(camera => camera.carFlow));
-        const averageHumanFlow = _.mean(
-            cameras.map(camera => camera.humanFlow)
-        );
+        const averageCarFlow =
+            _.mean(cameras.map(camera => camera.carFlow)) | 0;
+        const averageHumanFlow =
+            _.mean(cameras.map(camera => camera.humanFlow)) | 0;
 
         return (
             <List.Item

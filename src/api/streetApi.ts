@@ -1,6 +1,8 @@
 import { Street, StreetCamera } from '../models/Street';
 import _ from 'lodash';
 
+const streetVideosAddress = [''];
+
 const streetNames = [
     '紫阳大道',
     '福州路',
@@ -28,8 +30,9 @@ export const getRankingListData = async (): Promise<Street[]> => {
                 arrayIndex => {
                     return {
                         serialNumber: arrayIndex + 1,
-                        carFlow: _.random(0, 15),
-                        humanFlow: _.random(2, 50),
+                        carFlow: _.random(0, 5),
+                        humanFlow: _.random(2, 30),
+                        videoAddress: '',
                     };
                 }
             ),

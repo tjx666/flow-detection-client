@@ -32,25 +32,21 @@ export const RankingList = () => {
             const streets = await getRankingListData();
             const newStreetItems = streets
                 .sort((street1, street2) => {
-                    if (sortWay === 'car-flow') {
-                        return (
-                            _.mean(
-                                street1.cameras.map(camera => camera.carFlow)
-                            ) -
-                            _.mean(
-                                street2.cameras.map(camera => camera.carFlow)
-                            )
-                        );
-                    } else {
-                        return (
-                            _.mean(
-                                street1.cameras.map(camera => camera.humanFlow)
-                            ) -
-                            _.mean(
-                                street2.cameras.map(camera => camera.humanFlow)
-                            )
-                        );
-                    }
+                    return sortWayRef.current === 'car-flow'
+                        ? _.mean(
+                              street2.cameras.map(camera => camera.carFlow)
+                          ) -
+                              _.mean(
+                                  street1.cameras.map(camera => camera.carFlow)
+                              )
+                        : _.mean(
+                              street2.cameras.map(camera => camera.humanFlow)
+                          ) -
+                              _.mean(
+                                  street1.cameras.map(
+                                      camera => camera.humanFlow
+                                  )
+                              );
                 })
                 .slice(0, RANKING_LIST_LENGTH)
                 .map<ItemType>((item, index) => ({

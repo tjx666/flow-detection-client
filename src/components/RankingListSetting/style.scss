@@ -1,12 +1,20 @@
 .ranking-list-setting {
     display: flex;
     flex-direction: column;
+    margin-bottom: 16px;
 
     .setting-item {
         margin: 5px 0;
 
-        label {
+        .select-sort-way-hint {
             margin-right: 4px;
+            margin-left: -10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .sort-way:last-child {
+            margin-left: 5px;
         }
     }
 }
