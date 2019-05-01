@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Card, List, message } from 'antd';
+import _ from 'lodash';
 import { RankListItem } from '../rankingListItem';
 import { RankingListSetting } from '../RankingListSetting';
 import { Street } from '../../models/Street';
@@ -31,21 +32,35 @@ export const RankingList = () => {
             const streets = await getRankingListData();
             const newStreetItems = streets
                 .sort((street1, street2) => {
-                    return sortWay === sortWayRef.current
-                        ? street2.carFlow - street1.carFlow
-                        : street2.humanFlow - street1.humanFlow;
+                    if (sortWay === 'car-flow') {
+                        return (
+                            _.mean(
+                                street1.cameras.map(camera => camera.carFlow)
+                            ) -
+                            _.mean(
+                                street2.cameras.map(camera => camera.carFlow)
+                            )
+                        );
+                    } else {
+                        return (
+                            _.mean(
+                                street1.cameras.map(camera => camera.humanFlow)
+                            ) -
+                            _.mean(
+                                street2.cameras.map(camera => camera.humanFlow)
+                            )
+                        );
+                    }
                 })
                 .slice(0, RANKING_LIST_LENGTH)
-                .map(
-                    (item, index): ItemType => ({
-                        street: item,
-                        rank: index + 1,
-                    })
-                );
+                .map<ItemType>((item, index) => ({
+                    street: item,
+                    rank: index + 1,
+                }));
 
             setStreetsItems(newStreetItems);
         }, 1000);
-    }, [sortWay]);
+    }, []);
 
     const handleChangeSetting = React.useCallback(
         (settingItem: string, newValue: string) => {

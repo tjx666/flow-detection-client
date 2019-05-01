@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Button, Select, Icon, Tooltip } from 'antd';
+import { Card, Button } from 'antd';
+import { CameraSelect } from '../cameraSelect';
 import './style.scss';
-const Option = Select.Option;
 
 interface DataPanelProps {
     carFlow: number;
@@ -16,17 +16,7 @@ const DataPanel = React.memo(({ carFlow, humanFlow }: DataPanelProps) => {
                 <span>{`车流量: ${carFlow}`}</span>
                 <span>{`人流量: ${humanFlow}`}</span>
             </div>
-            <div className="select-camera-box">
-                <Tooltip title="当前摄像头">
-                    <Icon className="camera-icon" type="camera" />
-                </Tooltip>
-                <Select defaultValue="1">
-                    <Option value="1">1 号</Option>
-                    <Option value="2">2 号</Option>
-                    <Option value="3">3 号</Option>
-                    <Option value="4">4 号</Option>
-                </Select>
-            </div>
+            <CameraSelect />
         </div>
     );
 });
@@ -41,11 +31,12 @@ const bodyStyle: React.CSSProperties = {
     alignItems: 'center',
 };
 
-export const Monitor = ({ videoLink }: MonitorProps) => {
+export const Monitor = React.memo(({ videoLink }: MonitorProps) => {
     const MonitorTitle = React.useMemo(
         () => <span className="title">{`监控`}</span>,
         []
     );
+
     return (
         <Card
             className="monitor"
@@ -71,4 +62,4 @@ export const Monitor = ({ videoLink }: MonitorProps) => {
             </Button>
         </Card>
     );
-};
+});

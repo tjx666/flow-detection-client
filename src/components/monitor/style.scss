@@ -29,17 +29,6 @@
             flex-direction: column;
             margin-right: 10px;
         }
-
-        .select-camera-box {
-            display: flex;
-            align-items: center;
-
-            .camera-icon {
-                margin-right: 10px;
-                color: $primary-color;
-                font-size: 24px;
-            }
-        }
     }
 
     .player {

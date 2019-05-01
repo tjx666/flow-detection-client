@@ -1,6 +1,5 @@
-import { Street } from '../models/Street'
-import _ from 'lodash'
-// import Faker from 'faker';
+import { Street, StreetCamera } from '../models/Street';
+import _ from 'lodash';
 
 const streetNames = [
     '紫阳大道',
@@ -18,15 +17,22 @@ const streetNames = [
     '塘山街道',
     '广润街道',
     '上海路街道',
-]
+];
 
 export const getRankingListData = async (): Promise<Street[]> => {
-    return streetNames.map(name => {
-        const carFlow = _.random(2, 20)
+    return streetNames.map<Street>(name => {
+        const randomCameraCount = _.random(1, 4);
         return {
             name,
-            carFlow,
-            humanFlow: carFlow * (Math.random() < 0.5 ? 5 : 2),
-        }
-    })
-}
+            cameras: [...Array(randomCameraCount).keys()].map<StreetCamera>(
+                arrayIndex => {
+                    return {
+                        serialNumber: arrayIndex + 1,
+                        carFlow: _.random(0, 15),
+                        humanFlow: _.random(2, 50),
+                    };
+                }
+            ),
+        };
+    });
+};

@@ -1,5 +1,10 @@
+export interface StreetCamera {
+    serialNumber: number;
+    carFlow: number;
+    humanFlow: number;
+}
+
 export interface Street {
-    name: string
-    carFlow: number
-    humanFlow: number
+    name: string;
+    cameras: StreetCamera[];
 }
