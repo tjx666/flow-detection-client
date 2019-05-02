@@ -31,23 +31,30 @@ export const RankingList = ({ onSelectStreet }: RankingListProps) => {
         sortWayRef.current = sortWay;
     });
 
-    React.useEffect(() => {
-        setInterval(async () => {
-            const streets = await getRankingList();
-            const newStreetItems = streets
-                .sort((street1, street2) => {
-                    return sortWayRef.current === 'car-flow'
-                        ? _.mean(street2.cameras.map(camera => camera.carFlow)) - _.mean(street1.cameras.map(camera => camera.carFlow))
-                        : _.mean(street2.cameras.map(camera => camera.humanFlow)) - _.mean(street1.cameras.map(camera => camera.humanFlow));
-                })
-                .slice(0, RANKING_LIST_LENGTH)
-                .map<ItemType>((item, index) => ({
-                    street: item,
-                    rank: index + 1,
-                }));
+    const loadStreetList = async () => {
+        const streets = await getRankingList();
+        const newStreetItems = streets
+            .sort((street1, street2) => {
+                return sortWayRef.current === 'car-flow'
+                    ? _.mean(street2.cameras.map(camera => camera.carFlow)) -
+                          _.mean(street1.cameras.map(camera => camera.carFlow))
+                    : _.mean(street2.cameras.map(camera => camera.humanFlow)) -
+                          _.mean(street1.cameras.map(camera => camera.humanFlow));
+            })
+            .slice(0, RANKING_LIST_LENGTH)
+            .map<ItemType>((item, index) => ({
+                street: item,
+                rank: index + 1,
+            }));
 
-            setStreetsItems(newStreetItems);
-        }, 1000);
+        setStreetsItems(newStreetItems);
+    };
+
+    React.useEffect(() => {
+        loadStreetList();
+        setInterval(async () => {
+            await loadStreetList();
+        }, 3000);
     }, []);
 
     const handleChangeSetting = React.useCallback((settingItem: string, newValue: string) => {
@@ -76,8 +83,21 @@ export const RankingList = ({ onSelectStreet }: RankingListProps) => {
     }, []);
 
     return (
-        <Card className="ranking-list" title={RankingListTitle} bordered={false} headStyle={{ textAlign: 'center', height: 60 }} bodyStyle={cardBodyStyle}>
-            <List className="street-list" bordered={false} dataSource={streetsItems} renderItem={(item: ItemType) => <RankListItem rank={item.rank} street={item.street} onSelect={handleSelect} />} />
+        <Card
+            className="ranking-list"
+            title={RankingListTitle}
+            bordered={false}
+            headStyle={{ textAlign: 'center', height: 60 }}
+            bodyStyle={cardBodyStyle}
+        >
+            <List
+                className="street-list"
+                bordered={false}
+                dataSource={streetsItems}
+                renderItem={(item: ItemType) => (
+                    <RankListItem rank={item.rank} street={item.street} onSelect={handleSelect} />
+                )}
+            />
             <RankingListSetting onChangeSetting={handleChangeSetting} />
         </Card>
     );

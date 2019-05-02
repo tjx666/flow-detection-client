@@ -59,7 +59,7 @@
   ],
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --single-quote --write --print-width 240",
+      "prettier --single-quote --write",
       "git add"
     ],
     "src/**/*.{scss,css,html}": [
