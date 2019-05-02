@@ -8,4 +8,4 @@
 
 ### 当前进度
 
-![progress](https://github.com/tjx666/flow-detection-client/raw/master/screenshots/2019-04-30_23-37-56.png?raw=true)
+![progress](https://github.com/tjx666/flow-detection-client/raw/master/screenshots/preview.png?raw=true)
