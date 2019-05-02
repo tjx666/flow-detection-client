@@ -52,9 +52,11 @@ export const RankingList = ({ onSelectStreet }: RankingListProps) => {
 
     React.useEffect(() => {
         loadStreetList();
-        setInterval(async () => {
+        const timer = setInterval(async () => {
             await loadStreetList();
         }, 3000);
+
+        return () => clearInterval(timer);
     }, []);
 
     const handleChangeSetting = React.useCallback((settingItem: string, newValue: string) => {
