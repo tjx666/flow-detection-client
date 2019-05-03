@@ -5,7 +5,23 @@
 1. react hooks + typescript
 2. ant design UI library
 3. create-react-app cli
-    
+
+### 本地测试
+
+#### 安装依赖
+
+如果没有代理请使用 `cnpm` 替代 `npm`。
+
+```sh
+npm install
+```
+
+#### 启动项目
+
+```sh
+npm start
+```
+
 ### 首页
 
 ![home](https://github.com/tjx666/flow-detection-client/blob/master/screenshots/home.png?raw=true)
