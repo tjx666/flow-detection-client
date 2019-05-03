@@ -47,8 +47,8 @@ const streetNames: FakerStreetItem[] = [
     },
     {
         name: '桃园街道',
-        x: 40,
-        y: 400,
+        x: 440,
+        y: 380,
     },
     {
         name: '青山路街道',

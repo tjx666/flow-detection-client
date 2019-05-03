@@ -1,9 +1,73 @@
 .detail {
     width: 100vw;
-    text-align: center;
 
-    img {
-        width: 1000px;
-        height: 600px;
+    &-header {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        margin: 0 100px;
+        margin-top: 20px;
+
+        &-address {
+            margin-right: 40px;
+            font-weight: bold;
+            font-size: 18px;
+
+            .hint {
+                margin-right: 4px;
+            }
+
+            .current-address {
+                font-weight: normal;
+                font-style: italic;
+            }
+        }
+
+        .search-path-box {
+            position: absolute;
+            right: 50px;
+            width: 500px;
+        }
+    }
+
+    .recommend {
+        width: 1200px;
+        margin-top: 20px;
+        margin-left: 120px;
+    }
+
+    &-body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .monitor-container {
+            display: flex;
+            flex-direction: column;
+            margin-right: 100px;
+
+            .detail-monitor {
+                width: 500px;
+                height: 350px;
+            }
+        }
+
+        .thermal-map-container {
+            display: flex;
+            flex-direction: column;
+
+            .detail-thermal-map {
+                width: 400px;
+                height: 300px;
+            }
+        }
+
+        span {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+        }
     }
 }

@@ -20,7 +20,7 @@ export const CameraSelect = React.memo(({ cameras }: CameraSelectProps) => {
             <Tooltip title="当前摄像头">
                 <Icon className="camera-icon" type="camera" />
             </Tooltip>
-            <Select defaultValue="1">{CameraOptions}</Select>
+            <Select defaultValue="1号">{CameraOptions}</Select>
         </div>
     );
 });
