@@ -16,6 +16,8 @@ const LoginForm = React.memo(({ form }: LoginFormProps) => {
                 console.log('Received values of form: ', values);
             }
         });
+
+        window.location.href = 'http://localhost:3000/';
     };
 
     return (

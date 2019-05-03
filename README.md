@@ -10,7 +10,6 @@
 
 ![home](https://github.com/tjx666/flow-detection-client/blob/master/screenshots/home.png?raw=true)
 
-
 ### 详情页
 
 ![detail](https://github.com/tjx666/flow-detection-client/blob/master/screenshots/detail.png?raw=true)
