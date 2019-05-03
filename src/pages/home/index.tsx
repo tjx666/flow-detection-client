@@ -15,6 +15,8 @@ export const Home = React.memo(() => {
                 videoAddress: 'http://www.w3school.com.cn/i/movie.ogg',
             },
         ],
+        x: 0,
+        y: 0,
     };
     const [observingStreet, setObservingStreet] = React.useState<Street>(defaultObservingStreet);
 

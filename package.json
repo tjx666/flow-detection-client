@@ -9,8 +9,11 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@types/color": "^3.0.0",
     "antd": "^3.13.6",
     "classnames": "^2.2.6",
+    "color": "^3.1.1",
+    "constate": "^1.1.1",
     "eventemitter3": "^3.1.2",
     "faker": "^4.1.0",
     "lodash": "^4.17.11",

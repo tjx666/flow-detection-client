@@ -8,4 +8,6 @@ export interface StreetCamera {
 export interface Street {
     name: string;
     cameras: StreetCamera[];
+    x: number;
+    y: number;
 }

@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { RankListItem } from '../rankingListItem';
 import { RankingListSetting } from '../RankingListSetting';
 import { Street } from '../../models/Street';
-import { getRankingList } from '../../api/streetApi';
+import { getStreets } from '../../api/streetApi';
 import './style.scss';
 
 interface ItemType {
@@ -32,7 +32,7 @@ export const RankingList = ({ onSelectStreet }: RankingListProps) => {
     });
 
     const loadStreetList = async () => {
-        const streets = await getRankingList();
+        const streets = await getStreets();
         const newStreetItems = streets
             .sort((street1, street2) => {
                 return sortWayRef.current === 'car-flow'
