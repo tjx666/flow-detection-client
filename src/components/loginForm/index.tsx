@@ -25,7 +25,7 @@ const LoginForm = React.memo(({ form }: LoginFormProps) => {
             <Form.Item>
                 {getFieldDecorator('userName', {
                     rules: [{ required: true, message: 'Please input your username!' }],
-                })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />)}
+                })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />)}
             </Form.Item>
             <Form.Item>
                 {getFieldDecorator('password', {
@@ -34,7 +34,7 @@ const LoginForm = React.memo(({ form }: LoginFormProps) => {
                     <Input
                         prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                         type="password"
-                        placeholder="Password"
+                        placeholder="密码"
                     />,
                 )}
             </Form.Item>
@@ -42,12 +42,12 @@ const LoginForm = React.memo(({ form }: LoginFormProps) => {
                 {getFieldDecorator('remember', {
                     valuePropName: 'checked',
                     initialValue: true,
-                })(<Checkbox>Remember me</Checkbox>)}
+                })(<Checkbox>记住密码</Checkbox>)}
                 <a className="login-form-forgot" href="">
-                    Forgot password
+                    忘记密码
                 </a>
                 <Button type="primary" htmlType="submit" className="login-form-button">
-                    Log in
+                    登入
                 </Button>
             </Form.Item>
         </Form>

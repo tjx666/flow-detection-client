@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Card, List, message } from 'antd';
 import _ from 'lodash';
 import { RankListItem } from '../rankingListItem';
-import { RankingListSetting } from '../RankingListSetting';
+import { RankingListSetting } from '../rankingListSetting';
 import { Street } from '../../models/Street';
 import { getStreets } from '../../api/streetApi';
 import './style.scss';
