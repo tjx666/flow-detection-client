@@ -37,7 +37,7 @@
     "customize-cra": "^0.2.12",
     "cz-conventional-changelog": "^2.1.0",
     "eslint-plugin-react": "^7.12.4",
-    "husky": "^1.3.1",
+    "husky": "^2.2.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "lint-staged": "^8.1.5",
@@ -100,9 +100,7 @@
       "no-invalid-double-slash-comments": null,
       "no-descending-specificity": null
     },
-    "ignoreFiles": [
-      "components/style/color/{bezierEasing,colorPalette,tinyColor}.less"
-    ]
+    "ignoreFiles": []
   },
   "config": {
     "commitizen": {
