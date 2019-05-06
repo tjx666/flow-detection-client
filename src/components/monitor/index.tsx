@@ -8,11 +8,13 @@ import { Street, StreetCamera } from '../../models/Street';
 interface DataPanelProps {
     street: Street;
     currentCamera: StreetCamera;
+    onSelectCamera: (index: number) => void;
 }
 
-const DataPanel = React.memo(({ street, currentCamera }: DataPanelProps) => {
+const DataPanel = React.memo(({ street, currentCamera, onSelectCamera }: DataPanelProps) => {
     const { name: streetName } = street;
     const { carFlow, humanFlow } = currentCamera;
+    const handleSelect = (index: number) => onSelectCamera(index);
     return (
         <div className="data-panel">
             <h3 className="data-panel-header">{streetName}</h3>
@@ -21,7 +23,7 @@ const DataPanel = React.memo(({ street, currentCamera }: DataPanelProps) => {
                     <span>{`车流量: ${carFlow}`}</span>
                     <span>{`人流量: ${humanFlow}`}</span>
                 </div>
-                <CameraSelect cameras={street.cameras} />
+                <CameraSelect cameras={street.cameras} onSelect={handleSelect} />
             </div>
         </div>
     );
@@ -43,6 +45,9 @@ export const Monitor = React.memo(({ street }: MonitorProps) => {
     React.useEffect(() => setCamera(initCamera), [initCamera]);
     const { videoAddress } = currentCamera;
     const MonitorTitle = React.useMemo(() => <span className="title">{`监控`}</span>, []);
+    const handleSelectCamera = (index: number) => {
+        setCamera(street.cameras[index]);
+    };
 
     return (
         <Card
@@ -52,14 +57,8 @@ export const Monitor = React.memo(({ street }: MonitorProps) => {
             bodyStyle={bodyStyle}
             bordered
         >
-            <DataPanel street={street} currentCamera={currentCamera} />
-            <video
-                className="player"
-                src={videoAddress}
-                preload="auto"
-                poster="http://www.w3school.com.cn/i/w3school_logo_black.gif"
-                controls
-            />
+            <DataPanel street={street} currentCamera={currentCamera} onSelectCamera={handleSelectCamera} />
+            <video className="player" src={videoAddress} controls />
             <img
                 className="thermal-map"
                 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556881105125&di=49eb598830ef5326de2d91ca66e069a2&imgtype=0&src=http%3A%2F%2Fimages.dtcj.com%2FDTCJ%2F88fe74feca25a6217b3665d355b0d23fad7daa65a6a48a2fd2cfb6850d71343d.jpg%3Fwidth%3D756%26height%3D505"

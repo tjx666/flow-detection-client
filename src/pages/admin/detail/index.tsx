@@ -1,17 +1,40 @@
 import * as React from 'react';
+import _ from 'lodash';
 import './style.scss';
+import { streetsVideosAddress } from '../../../api/streetApi';
 
 export const Detail = React.memo(() => {
+    const [{ carFlow, humanFlow }, setFlowData] = React.useState({
+        carFlow: 6,
+        humanFlow: 10,
+    });
+    const videoAddress = React.useMemo(() => streetsVideosAddress[_.random(0, 8)], []);
+
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+            const newFlowData = {
+                carFlow: _.random(2, 10),
+                humanFlow: _.random(4, 15),
+            };
+
+            setFlowData(newFlowData);
+        }, 1000);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
+
     return (
         <main className="admin-detail">
             <div className="detail-header">
                 <span className="data-item">
                     <span className="data-desc">车流量:</span>
-                    <span className="data-value">6</span>
+                    <span className="data-value">{carFlow}</span>
                 </span>
                 <span className="data-item">
                     <span className="data-desc">人流量:</span>
-                    <span className="data-value">10</span>
+                    <span className="data-value">{humanFlow}</span>
                 </span>
                 <span className="data-item current-address">
                     <span className="data-desc">当前位置:</span>
@@ -21,7 +44,7 @@ export const Detail = React.memo(() => {
             <div className="admin-detail-body">
                 <div className="monitor-container">
                     <span>监控</span>
-                    <img className="detail-monitor" src="https://i.loli.net/2019/05/03/5ccc22980d0af.png" />
+                    <video className="detail-monitor" src={videoAddress} controls />
                 </div>
                 <div className="thermal-map-container">
                     <span>热力图</span>

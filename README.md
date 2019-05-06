@@ -16,7 +16,7 @@
 npm install
 ```
 
-#### 修复一个bug
+#### 修复一个 "@types/react": "^16.8.6" ref.current 定义为 readonly 的 bug
 
 将 `node_modules\@types\react\index.d.ts` 中 72 行的 `readonly` 删掉。
 

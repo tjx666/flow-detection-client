@@ -1,7 +1,17 @@
 import { Street, StreetCamera } from '../models/Street';
 import _ from 'lodash';
 
-const streetVideosAddress = [''];
+export const streetsVideosAddress = [
+    require('../assets/videos/1.mp4'),
+    require('../assets/videos/2.mp4'),
+    require('../assets/videos/3.mp4'),
+    require('../assets/videos/4.mp4'),
+    require('../assets/videos/5.mp4'),
+    require('../assets/videos/6.mp4'),
+    require('../assets/videos/7.mp4'),
+    require('../assets/videos/8.mp4'),
+    require('../assets/videos/9.mp4'),
+];
 
 interface FakerStreetItem {
     name: string;
@@ -97,7 +107,7 @@ export const getStreets = async (): Promise<Street[]> => {
                     serialNumber: arrayIndex + 1,
                     carFlow: _.random(1, 10),
                     humanFlow: _.random(2, 30),
-                    videoAddress: '',
+                    videoAddress: streetsVideosAddress[_.random(0, 8)],
                 };
             }),
             x,

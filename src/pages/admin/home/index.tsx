@@ -6,13 +6,13 @@ import { Street } from '../../../models/Street';
 
 export const Home = React.memo(() => {
     const defaultObservingStreet: Street = {
-        name: '紫阳大道',
+        name: '当前未选择',
         cameras: [
             {
                 serialNumber: 1,
                 carFlow: 0,
                 humanFlow: 0,
-                videoAddress: 'http://www.w3school.com.cn/i/movie.ogg',
+                videoAddress: '',
             },
         ],
         x: 0,

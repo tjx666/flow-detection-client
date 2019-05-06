@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Popover, Input, Steps, Card } from 'antd';
-import { CameraSelect } from '../../../components';
 import { StreetCamera } from '../../../models/Street';
 import './style.scss';
 const Search = Input.Search;
@@ -68,6 +67,8 @@ export const Recommend = () => {
         return <Popover content={renderPopoverContent(index, status, title, description)}>{dot}</Popover>;
     };
 
+    const handleSelectCamera = () => {};
+
     return (
         <main className="recommend">
             <div className="recommend-header">
@@ -75,7 +76,6 @@ export const Recommend = () => {
                     <span className="hint">当前位置:</span>
                     <span className="address">紫阳大道</span>
                 </div>
-                <CameraSelect cameras={cameras} />
                 <Search
                     className="search-path-box"
                     placeholder="输入目的地"
