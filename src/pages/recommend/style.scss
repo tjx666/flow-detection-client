@@ -1,0 +1,36 @@
+.recommend {
+    &-header {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        margin: 0 100px;
+        margin-top: 20px;
+
+        &-current-address {
+            margin-right: 40px;
+            font-weight: bold;
+            font-size: 18px;
+
+            .hint {
+                margin-right: 4px;
+            }
+
+            .address {
+                font-weight: normal;
+                font-style: italic;
+            }
+        }
+
+        .search-path-box {
+            position: absolute;
+            right: 50px;
+            width: 500px;
+        }
+    }
+
+    .recommend-path {
+        width: 1200px;
+        margin-top: 20px;
+        margin-left: 120px;
+    }
+}

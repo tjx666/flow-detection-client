@@ -16,6 +16,10 @@
 npm install
 ```
 
+#### 修复一个bug
+
+将 `node_modules\@types\react\index.d.ts` 中 72 行的 `readonly` 删掉。
+
 #### 启动项目
 
 ```sh

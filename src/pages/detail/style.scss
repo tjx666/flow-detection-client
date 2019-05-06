@@ -1,45 +1,29 @@
 .detail {
     width: 100vw;
 
-    &-header {
-        position: relative;
-        display: flex;
-        align-items: flex-end;
-        margin: 0 100px;
-        margin-top: 20px;
+    .detail-header {
+        margin-top: 60px;
+        margin-left: 200px;
 
-        &-address {
-            margin-right: 40px;
-            font-weight: bold;
-            font-size: 18px;
-
-            .hint {
-                margin-right: 4px;
+        .data-item {
+            &:not(:last-child) {
+                margin-right: 20px;
             }
 
-            .current-address {
-                font-weight: normal;
-                font-style: italic;
+            .data-desc {
+                margin-right: 10px;
+                font-weight: bold;
+                font-size: 18px;
             }
         }
-
-        .search-path-box {
-            position: absolute;
-            right: 50px;
-            width: 500px;
-        }
-    }
-
-    .recommend {
-        width: 1200px;
-        margin-top: 20px;
-        margin-left: 120px;
     }
 
     &-body {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 0 auto;
+        margin-top: 100px;
 
         .monitor-container {
             display: flex;
