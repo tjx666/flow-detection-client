@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Popover, Input, Steps, Card } from 'antd';
-import { CameraSelect } from '../../components';
-import { StreetCamera } from '../../models/Street';
+import { CameraSelect } from '../../../components';
+import { StreetCamera } from '../../../models/Street';
+import './style.scss';
 const Search = Input.Search;
 const Step = Steps.Step;
 
-export const Recommand = () => {
+export const Recommend = () => {
     const cameras: StreetCamera[] = [
         {
             serialNumber: 1,
@@ -70,7 +71,7 @@ export const Recommand = () => {
     return (
         <main className="recommend">
             <div className="recommend-header">
-                <div className="recommend-current-address">
+                <div className="current-address">
                     <span className="hint">当前位置:</span>
                     <span className="address">紫阳大道</span>
                 </div>

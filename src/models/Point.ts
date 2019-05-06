@@ -57,7 +57,7 @@ export class Point {
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.font = '12px 黑体';
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = 'black';
         ctx.fillText(this.street.name, this.x - 20, this.y + this.radius + 16);
     }
 }

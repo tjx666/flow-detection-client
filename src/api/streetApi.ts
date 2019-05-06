@@ -12,12 +12,12 @@ interface FakerStreetItem {
 const streetNames: FakerStreetItem[] = [
     {
         name: '紫阳大道',
-        x: 300,
-        y: 380,
+        x: 30,
+        y: 300,
     },
     {
         name: '福州路',
-        x: 80,
+        x: 140,
         y: 100,
     },
     {
@@ -32,22 +32,22 @@ const streetNames: FakerStreetItem[] = [
     },
     {
         name: '八月湖街道',
-        x: 300,
+        x: 500,
         y: 500,
     },
     {
         name: '百花洲街道',
-        x: 400,
-        y: 430,
+        x: 580,
+        y: 450,
     },
     {
         name: '沙井街道',
-        x: 50,
-        y: 480,
+        x: 30,
+        y: 200,
     },
     {
         name: '桃园街道',
-        x: 440,
+        x: 500,
         y: 380,
     },
     {
@@ -58,12 +58,12 @@ const streetNames: FakerStreetItem[] = [
     {
         name: '上海路街道',
         x: 100,
-        y: 360,
+        y: 320,
     },
     {
         name: '京山街道',
-        x: 250,
-        y: 380,
+        x: 550,
+        y: 320,
     },
     {
         name: '三家店街道',
@@ -72,7 +72,7 @@ const streetNames: FakerStreetItem[] = [
     },
     {
         name: '塘山街道',
-        x: 480,
+        x: 420,
         y: 560,
     },
     {

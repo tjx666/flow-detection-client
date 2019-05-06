@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Map } from '../../components';
-import { RankingList, Monitor } from '../../components';
+import { Map } from '../../../components';
+import { RankingList, Monitor } from '../../../components';
 import './style.scss';
-import { Street } from '../../models/Street';
+import { Street } from '../../../models/Street';
 
 export const Home = React.memo(() => {
     const defaultObservingStreet: Street = {
@@ -29,7 +29,7 @@ export const Home = React.memo(() => {
     );
 
     return (
-        <main className="home">
+        <main className="admin-home">
             <RankingList onSelectStreet={handleSelectStreet} />
             <Map />
             <Monitor street={observingStreet} />

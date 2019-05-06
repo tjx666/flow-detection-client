@@ -26,9 +26,13 @@ npm install
 npm start
 ```
 
-### 首页
+### 用户首页
 
 ![home](https://github.com/tjx666/flow-detection-client/blob/master/screenshots/home.png?raw=true)
+
+### 监管部门首页
+
+![admin home](https://github.com/tjx666/flow-detection-client/blob/master/screenshots/admin-home.png?raw=true)
 
 ### 详情页
 
@@ -37,3 +41,7 @@ npm start
 ### 登入页
 
 ![login](https://github.com/tjx666/flow-detection-client/blob/master/screenshots/login.png?raw=true)
+
+### 推荐路线
+
+![login](https://github.com/tjx666/flow-detection-client/blob/master/screenshots/recommend.png?raw=true)

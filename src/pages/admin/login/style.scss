@@ -1,11 +1,11 @@
-@import '../../style/theme.scss';
+@import '../../../style/theme.scss';
 
-.login {
+.admin-login {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    height: 100%;
     padding-top: 120px;
     background-color: rgba(173, 216, 230, 0.253);
 

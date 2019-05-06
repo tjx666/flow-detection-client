@@ -3,7 +3,7 @@ import './style.scss';
 
 export const Detail = React.memo(() => {
     return (
-        <main className="detail">
+        <main className="admin-detail">
             <div className="detail-header">
                 <span className="data-item">
                     <span className="data-desc">车流量:</span>
@@ -18,7 +18,7 @@ export const Detail = React.memo(() => {
                     <span className="data-value">紫阳大道</span>
                 </span>
             </div>
-            <div className="detail-body">
+            <div className="admin-detail-body">
                 <div className="monitor-container">
                     <span>监控</span>
                     <img className="detail-monitor" src="https://i.loli.net/2019/05/03/5ccc22980d0af.png" />

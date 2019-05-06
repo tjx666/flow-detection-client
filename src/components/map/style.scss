@@ -1,5 +1,8 @@
+@import '../../style/theme.scss';
+
 .map {
     align-self: center;
-    background-color: rgba(22, 21, 21, 0.877);
+    background-image: url('../../assets/images/bg.jpg');
+    border: 1px solid $light-primary-color;
     border-radius: 4px;
 }

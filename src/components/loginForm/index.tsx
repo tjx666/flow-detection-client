@@ -16,8 +16,9 @@ const LoginForm = React.memo(({ form }: LoginFormProps) => {
                 console.log('Received values of form: ', values);
             }
         });
+        sessionStorage.setItem('isLogin', 'true');
 
-        window.location.href = 'http://localhost:3000/';
+        window.location.href = 'http://localhost:3000/admin';
     };
 
     return (
