@@ -13,7 +13,7 @@ export const Detail = React.memo(() => {
                     <span className="data-desc">人流量:</span>
                     <span className="data-value">10</span>
                 </span>
-                <span className="data-item">
+                <span className="data-item current-address">
                     <span className="data-desc">当前位置:</span>
                     <span className="data-value">紫阳大道</span>
                 </span>

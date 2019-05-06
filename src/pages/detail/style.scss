@@ -1,3 +1,5 @@
+@import '../../style/theme.scss';
+
 .detail {
     width: 100vw;
 
@@ -6,15 +8,27 @@
         margin-left: 200px;
 
         .data-item {
-            &:not(:last-child) {
+            &:first-child {
                 margin-right: 20px;
             }
 
             .data-desc {
-                margin-right: 10px;
+                margin-right: 16px;
+                color: $primary-color;
                 font-weight: bold;
                 font-size: 18px;
             }
+
+            .data-value {
+                color: black;
+                font-size: 16px;
+                font-style: italic;
+            }
+        }
+
+        .current-address {
+            float: right;
+            margin-right: 240px;
         }
     }
 
