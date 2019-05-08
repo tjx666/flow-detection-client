@@ -78,7 +78,7 @@ export const Recommend = () => {
                 </div>
                 <Search
                     className="search-path-box"
-                    placeholder="输入目的地"
+                    placeholder="青山路街道"
                     enterButton="确定"
                     size="large"
                     onSearch={value => console.log(value)}

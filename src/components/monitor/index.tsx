@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 import { Card, Button } from 'antd';
 import { CameraSelect } from '../cameraSelect';
 import './style.scss';
@@ -48,6 +49,10 @@ export const Monitor = React.memo(({ street }: MonitorProps) => {
     const handleSelectCamera = (index: number) => {
         setCamera(street.cameras[index]);
     };
+    const bg = require('../../assets/images/bg.jpg');
+    const addr = require('../../assets/images/result.gif');
+    console.log('addr', street.name)
+    const videoSrc = street.name === '当前未选择' ? bg : addr;
 
     return (
         <Card
@@ -58,11 +63,13 @@ export const Monitor = React.memo(({ street }: MonitorProps) => {
             bordered
         >
             <DataPanel street={street} currentCamera={currentCamera} onSelectCamera={handleSelectCamera} />
-            <video className="player" src={videoAddress} controls />
-            <img
-                className="thermal-map"
-                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556881105125&di=49eb598830ef5326de2d91ca66e069a2&imgtype=0&src=http%3A%2F%2Fimages.dtcj.com%2FDTCJ%2F88fe74feca25a6217b3665d355b0d23fad7daa65a6a48a2fd2cfb6850d71343d.jpg%3Fwidth%3D756%26height%3D505"
-            />
+            <video
+                 autoPlay
+                 className="player"
+                 src={videoAddress}
+                 controls
+             />
+            <img className="thermal-map" alt="当前未选择摄像头" src={videoSrc} />
             <Button type="primary" block>
                 <Link to="/admin/detail">查看详情 ></Link>
             </Button>
